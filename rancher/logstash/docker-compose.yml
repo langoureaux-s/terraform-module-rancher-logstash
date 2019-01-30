@@ -1,0 +1,38 @@
+version: '2'
+services:
+  logstash:
+    tty: true
+    image: ${ls_image}:${ls_version}
+    volumes:
+      - ${data_path}:/usr/share/logstash/data
+    environment:
+      LS_JVM_MEMORY: ${jvm_memory}
+      LS_CONFIG_NUMBERWORKERS: ${number_workers}
+      LS_CONFIG_PATHCONFIG: /config-dir/*/*.conf
+      LS_MONITORING_ENABLED: ${enable_monitoring}
+      LS_MONITORING_ELASTICSEARCH_URL: http://elasticsearch-client:9200
+      LS_MONITORING_ELASTICSEARCH_USERNAME: logstash_system
+      LS_MONITORING_ELASTICSEARCH_PASSWORD: ${logstash_system_password}
+      LS_RULE_INPUT_GLOBAL: |
+        ${input_rules}
+      LS_RULE_OUTPUT_GLOBAL: |
+        ${output_rules}
+      LS_RULE_FILTER_GLOBAL: |
+        ${filter_rules}
+      LS_CERT_FILEBEATCRT_NAME: filebeat.crt
+      LS_CERT_FILEBEATCRT_CONTEND: |
+        ${filebeat_crt}
+      LS_CERT_FILEBEATKEY_NAME: filebeat.key
+      LS_CERT_FILEBEATKEY_CONTEND: |
+        ${filebeat_key}
+    ports: ${ports}
+    external_links:
+       - ${client_stack}:elasticsearch-client
+    mem_limit: ${container_memory}
+    cpu_shares: ${cpu_shares}
+    labels:
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$$$${stack_name}/$$$${service_name}
+      io.rancher.scheduler.affinity:host_label: ${label_global_scheduling}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.global: 'true'
