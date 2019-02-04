@@ -14,7 +14,7 @@ variable "label_global_scheduling" {
 
 variable "image_version" {
   description = "The image version of Logstash to use"
-  default = "6.5.4-1"
+  default = "6.5.4-2"
 }
 variable "image_name" {
   description = "The image name to use"
@@ -70,7 +70,14 @@ variable "cpu_shares" {
   description = "The maximum of CPU usage that this container can consume"
   default = "1024"
 }
-
+variable "queue_type" {
+  description = "Specify persisted to enable persistent queues. By default, persistent queues are disabled (default: queue.type: memory)"
+  default = "memory"
+}
+variable "queue_max_bytes" {
+  description = "The total capacity of the queue in number of bytes. The default is 1024mb (1gb). Make sure the capacity of your disk drive is greater than the value you specify here."
+  default = "1g"
+}
 
 
 

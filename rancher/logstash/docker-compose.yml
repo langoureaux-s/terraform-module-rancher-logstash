@@ -9,6 +9,8 @@ services:
       LS_JVM_MEMORY: ${jvm_memory}
       LS_CONFIG_NUMBERWORKERS: ${number_workers}
       LS_CONFIG_PATHCONFIG: /config-dir/*/*.conf
+      LS_CONFIG_QUEUETYPE: ${queue_type}
+      LS_CONFIG_QUEUEMAXBYTES: ${queue_max_bytes}
       LS_MONITORING_ENABLED: ${enable_monitoring}
       LS_MONITORING_ELASTICSEARCH_URL: http://elasticsearch-client:9200
       LS_MONITORING_ELASTICSEARCH_USERNAME: logstash_system

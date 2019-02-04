@@ -35,6 +35,8 @@ data "template_file" "docker_compose_logstash" {
     filebeat_key              = "${indent(8, var.filebeat_key)}"
     label_global_scheduling   = "${var.label_global_scheduling}"
     ports                     = "${var.ports}"
+    queue_type                = "${var.queue_type}"
+    queue_max_bytes           = "${var.queue_max_bytes}"
   }
 }
 data "template_file" "rancher_compose_logstash" {
