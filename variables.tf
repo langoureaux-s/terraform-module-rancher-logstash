@@ -73,6 +73,7 @@ variable "ports" {
 }
 variable "number_workers" {
   description = "The number of workers that logstash use"
+  default = ""
 }
 
 variable "container_memory" {
