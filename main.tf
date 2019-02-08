@@ -22,7 +22,7 @@ data "template_file" "docker_compose_logstash" {
     ls_version                = "${var.image_version}"
     container_memory          = "${var.container_memory}"
     cpu_shares                = "${var.cpu_shares}"
-    client_stack              = "${var.client_stack}"
+    external_links            = "${indent(6, join("\n", formatlist("- %s", var.external_links)))}"
     data_path                 = "${var.data_path}"
     jvm_memory                = "${var.jvm_memory}"
     number_workers            = "${var.number_workers}"
@@ -33,8 +33,9 @@ data "template_file" "docker_compose_logstash" {
     filter_rules              = "${indent(8, var.filter_rules)}"
     filebeat_crt              = "${indent(8, var.filebeat_certificate)}"
     filebeat_key              = "${indent(8, var.filebeat_key)}"
-    label_global_scheduling   = "${var.label_global_scheduling}"
-    ports                     = "${var.ports}"
+    label_scheduling          = "${var.label_scheduling}"
+    global_scheduling         = "${var.global_scheduling}"
+    ports                     = "${indent(6, join("\n", formatlist("- %s", var.ports)))}"
     queue_type                = "${var.queue_type}"
     queue_max_bytes           = "${var.queue_max_bytes}"
   }
@@ -43,6 +44,7 @@ data "template_file" "rancher_compose_logstash" {
   template = "${file("${path.module}/rancher/logstash/rancher-compose.yml")}"
 
   vars {
+    scale = "${var.scale}"
   }
 }
 resource "rancher_stack" "this" {

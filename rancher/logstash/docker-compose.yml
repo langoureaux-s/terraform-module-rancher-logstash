@@ -27,14 +27,15 @@ services:
       LS_CERT_FILEBEATKEY_NAME: filebeat.key
       LS_CERT_FILEBEATKEY_CONTEND: |
         ${filebeat_key}
-    ports: ${ports}
+    ports: 
+      ${ports}
     external_links:
-       - ${client_stack}:elasticsearch-client
+      ${external_links}
     mem_limit: ${container_memory}
     cpu_shares: ${cpu_shares}
     labels:
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$$$${stack_name}/$$$${service_name}
-      io.rancher.scheduler.affinity:host_label: ${label_global_scheduling}
+      io.rancher.scheduler.affinity:host_label: ${label_scheduling}
       io.rancher.container.hostname_override: container_name
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.global: ${global_scheduling}

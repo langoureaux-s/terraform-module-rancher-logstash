@@ -2,3 +2,4 @@ version: '2'
 services:
   logstash:
     start_on_create: true
+    scale: ${scale}

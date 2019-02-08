@@ -7,8 +7,17 @@ variable "stack_name" {
 variable "finish_upgrade" {
   description = "Automatically finish upgrade on Rancher when apply new plan"
 }
-variable "label_global_scheduling" {
-  description = "The label to use when schedule this stack as global scheduling"
+variable "scale" {
+  description = "Set the number of instance you should.Don't use it if you should global_scheduling as true"
+  default = ""
+}
+variable "label_scheduling" {
+  description = "The label to use when schedule this stack"
+  default = ""
+}
+variable "global_scheduling" {
+  description = "Set to true if you should to deploy on all node that match label_scheduling"
+  default     = "true"
 }
 
 
@@ -44,8 +53,10 @@ variable "filter_rules" {
   description = "The filter rules for Logstash"
   default = ""
 }
-variable "client_stack" {
-  description = "The Elasticsearch stack name"
+variable "external_links" {
+  description = "List for external links"
+  type = "list"
+  default = []
 }
 variable "filebeat_certificate" {
   description = "The filebeat certificate contend"
@@ -57,7 +68,8 @@ variable "filebeat_key" {
 }
 variable "ports" {
   description = "the array of exposed port as flat list"
-  default = "[\"5003:5003/tcp\"]"
+  type = "list"
+  default = []
 }
 variable "number_workers" {
   description = "The number of workers that logstash use"
@@ -76,7 +88,7 @@ variable "queue_type" {
 }
 variable "queue_max_bytes" {
   description = "The total capacity of the queue in number of bytes. The default is 1024mb (1gb). Make sure the capacity of your disk drive is greater than the value you specify here."
-  default = "1g"
+  default = "1gb"
 }
 
 
