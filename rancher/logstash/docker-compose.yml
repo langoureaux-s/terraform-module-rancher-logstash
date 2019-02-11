@@ -28,8 +28,7 @@ services:
       LS_CERT_FILEBEATKEY_CONTEND: |
         ${filebeat_key}
       COMMIT_ID: ${commit_id}
-    ports: 
-      ${ports}
+    ${ports}
     external_links:
       ${external_links}
     ${mem_limit}
