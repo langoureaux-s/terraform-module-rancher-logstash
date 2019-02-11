@@ -21,12 +21,8 @@ services:
         ${output_rules}
       LS_RULE_FILTER_GLOBAL: |
         ${filter_rules}
-      LS_CERT_FILEBEATCRT_NAME: filebeat.crt
-      LS_CERT_FILEBEATCRT_CONTEND: |
-        ${filebeat_crt}
-      LS_CERT_FILEBEATKEY_NAME: filebeat.key
-      LS_CERT_FILEBEATKEY_CONTEND: |
-        ${filebeat_key}
+      ${filebeat_crt}
+      ${filebeat_key}
       COMMIT_ID: ${commit_id}
     ${ports}
     external_links:
