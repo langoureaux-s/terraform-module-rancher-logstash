@@ -5,6 +5,8 @@ services:
     image: ${ls_image}:${ls_version}
     volumes:
       - ${data_path}:/usr/share/logstash/data
+    volumes_from:
+      - logstash-driver
     environment:
       LS_JVM_MEMORY: ${jvm_memory}
       LS_CONFIG_NUMBERWORKERS: ${number_workers}
@@ -40,3 +42,12 @@ services:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.pull_image: always
       io.rancher.scheduler.global: ${global_scheduling}
+      io.rancher.sidekicks: logstash-driver
+  
+  logstash-driver:
+    image: ${logstash_driver_image}:${logstash_driver_version}
+    network_mode: none
+    labels:
+      io.rancher.container.start_once: 'true'
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always

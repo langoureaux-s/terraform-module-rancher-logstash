@@ -1,7 +1,13 @@
+locals {
+  stack_id    = "${compact(concat(coalescelist(rancher_stack.this_logstash.*.id, rancher_stack.this_logstash_driver.*.id), list("")))}"
+  stack_name  = "${compact(concat(coalescelist(rancher_stack.this_logstash.*.name, rancher_stack.this_logstash_driver.*.name), list("")))}"
+}
+
+
 output "stack_id" {
-  value = "${rancher_stack.this.id}"
+  value = "${join("", local.stack_id)}"
 }
 
 output "stack_name" {
-  value = "${rancher_stack.this.name}/logstash"
+  value = "${join("", local.stack_name)}/logstash"
 }
