@@ -68,7 +68,7 @@ resource "rancher_stack" "this_logstash" {
 
 # Logstash with driver
 data "template_file" "docker_compose_logstash_driver" {
-  template = "${file("${path.module}/rancher/logstash/docker-compose.yml")}"
+  template = "${file("${path.module}/rancher/logstash-driver/docker-compose.yml")}"
   count = "${var.deploy_logstash_driver == "true" ? 1 : 0}"
 
   vars {
@@ -98,7 +98,7 @@ data "template_file" "docker_compose_logstash_driver" {
   }
 }
 data "template_file" "rancher_compose_logstash_driver" {
-  template = "${file("${path.module}/rancher/logstash/rancher-compose.yml")}"
+  template = "${file("${path.module}/rancher/logstash-driver/rancher-compose.yml")}"
   count = "${var.deploy_logstash_driver == "true" ? 1 : 0}"
 
   vars {
