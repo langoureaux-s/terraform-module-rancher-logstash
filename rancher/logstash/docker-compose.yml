@@ -32,7 +32,7 @@ services:
       ${ports}
     external_links:
       ${external_links}
-    mem_limit: ${container_memory}
+    ${mem_limit}
     cpu_shares: ${cpu_shares}
     labels:
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$$$${stack_name}/$$$${service_name}

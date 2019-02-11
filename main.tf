@@ -20,7 +20,7 @@ data "template_file" "docker_compose_logstash" {
   vars {
     ls_image                  = "${var.image_name}"
     ls_version                = "${var.image_version}"
-    container_memory          = "${var.container_memory}"
+    mem_limit               = "${var.container_memory != "" ? "mem_limit: var.container_memory" : ""}"
     cpu_shares                = "${var.cpu_shares}"
     external_links            = "${indent(6, join("\n", formatlist("- %s", var.external_links)))}"
     data_path                 = "${var.data_path}"
