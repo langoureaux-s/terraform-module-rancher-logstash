@@ -48,7 +48,8 @@ data "template_file" "rancher_compose_logstash" {
   template = "${file("${path.module}/rancher/logstash/rancher-compose.yml")}"
 
   vars {
-    scale = "${var.scale}"
+    scale                   = "${var.scale}"
+    deploy_logstash_driver  = "${var.deploy_logstash_driver}"
   }
 }
 resource "rancher_stack" "this" {
