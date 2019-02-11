@@ -19,6 +19,10 @@ variable "global_scheduling" {
   description = "Set to true if you should to deploy on all node that match label_scheduling"
   default     = "true"
 }
+variable "commit_id" {
+  description = "The commit id that build image. It's usefull to force pull new image when use always the same tag"
+  default = ""
+}
 
 
 variable "image_version" {
