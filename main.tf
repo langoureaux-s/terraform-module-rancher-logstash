@@ -17,6 +17,7 @@ data "rancher_environment" "project" {
 # Logstash without driver
 data "template_file" "docker_compose_logstash" {
   template = "${file("${path.module}/rancher/logstash/docker-compose.yml")}"
+  count = "${var.deploy_logstash_driver != "true" ? 1 : 0}"
 
   vars {
     ls_image                  = "${var.image_name}"
@@ -44,13 +45,15 @@ data "template_file" "docker_compose_logstash" {
 }
 data "template_file" "rancher_compose_logstash" {
   template = "${file("${path.module}/rancher/logstash/rancher-compose.yml")}"
+  count = "${var.deploy_logstash_driver != "true" ? 1 : 0}"
 
   vars {
     scale                   = "${var.scale != "" ? "scale: ${var.scale}" : ""}"
-    scale_driver            = "${var.deploy_logstash_driver != "true" ? "scale: 0" : ""}"
   }
 }
 resource "rancher_stack" "this_logstash" {
+  count = "${var.deploy_logstash_driver != "true" ? 1 : 0}"
+  
   name            = "${var.stack_name}"
   description     = "Logstash - Processing events"
   environment_id  = "${data.rancher_environment.project.id}"
