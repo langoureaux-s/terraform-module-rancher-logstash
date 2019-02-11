@@ -39,7 +39,7 @@ data "template_file" "docker_compose_logstash" {
     queue_type                = "${var.queue_type}"
     queue_max_bytes           = "${var.queue_max_bytes}"
     commit_id                 = "${var.commit_id}"
-    deploy_logstash_driver    = "${var.deploy_logstash_driver}"
+    sidekicks                 = "${var.deploy_logstash_driver == "true" ? "io.rancher.sidekicks: logstash-driver" : ""}"
     logstash_driver_image     = "${var.logstash_driver_image}"
     logstash_driver_version   = "${var.logstash_driver_version}"
   }
