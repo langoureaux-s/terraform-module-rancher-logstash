@@ -3,3 +3,5 @@ services:
   logstash:
     start_on_create: true
     scale: ${scale}
+  logstash-driver:
+    scale: ${deploy_logstash_driver == 'true' ? 1 : 0}

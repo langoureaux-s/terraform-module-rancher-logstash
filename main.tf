@@ -38,7 +38,10 @@ data "template_file" "docker_compose_logstash" {
     ports                     = "${indent(6, join("\n", formatlist("- %s", var.ports)))}"
     queue_type                = "${var.queue_type}"
     queue_max_bytes           = "${var.queue_max_bytes}"
-    commit_id               = "${var.commit_id}"
+    commit_id                 = "${var.commit_id}"
+    deploy_logstash_driver    = "${var.deploy_logstash_driver}"
+    logstash_driver_image     = "${var.logstash_driver_image}"
+    logstash_driver_version   = "${var.logstash_driver_version}"
   }
 }
 data "template_file" "rancher_compose_logstash" {

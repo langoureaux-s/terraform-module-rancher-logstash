@@ -96,6 +96,15 @@ variable "queue_max_bytes" {
   default = "1gb"
 }
 
-
-
-
+variable "deploy_logstash_driver" {
+  description = "Permit to deploy logstash driver container as sidekicks"
+  default = "false"
+}
+variable "logstash_driver_image" {
+  description = "The logstash driver image to use"
+  default = "harbor.hm.dm.ad/logmanagement/logstash-driver"
+}
+variable "logstash_driver_version" {
+  description = "Thes logstash driver version to use"
+  default = "latest"
+}
