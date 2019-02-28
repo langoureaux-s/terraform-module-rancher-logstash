@@ -131,7 +131,7 @@ variable "docker_volume" {
   description = "Set to true if you need to use docker volume instead of mount path. If you use docker_volume, data_path is the name of your volume"
   default = "false"
 }
-variable "volume_driver" {
+variable "storage_driver" {
   description = "The volume driver you should to use"
   default = "local"
 }
