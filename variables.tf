@@ -45,9 +45,15 @@ variable "enable_monitoring" {
 variable "logstash_system_password" {
   description = "The logstash_system password"
 }
+variable "input_rules_name" {
+  description = "The input rules name for Logstash"
+  type = "list"
+  default = []
+}
 variable "input_rules" {
   description = "The input rules for Logstash"
-  default = ""
+  type = "list"
+  default = []
 }
 variable "output_rules" {
   description = "The output rules for Logstash"

@@ -14,6 +14,11 @@ data "rancher_environment" "project" {
 }
 
 
+locals {
+  input_rules = "${indent(6, join("\n", formatlist("- LS_RULE_INPUT_%s:\n%s", upper(var.input_rules_name), indent(2, var.input_rules)))}"
+}
+
+
 # Logstash without driver
 data "template_file" "docker_compose_logstash" {
   template = "${file("${path.module}/rancher/logstash/docker-compose.yml")}"
@@ -30,6 +35,7 @@ data "template_file" "docker_compose_logstash" {
     number_workers            = "${var.number_workers}"
     enable_monitoring         = "${var.enable_monitoring}"
     logstash_system_password  = "${var.logstash_system_password}"
+    inout_rules               = filebeat_key              = ""
     input_rules               = "${indent(8, var.input_rules)}"
     output_rules              = "${indent(8, var.output_rules)}"
     filter_rules              = "${indent(8, var.filter_rules)}"
