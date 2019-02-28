@@ -15,7 +15,8 @@ data "rancher_environment" "project" {
 
 
 locals {
-  input_rules = "${indent(6, join("\n", formatlist("- LS_RULE_INPUT_%s: |\n%s", upper(var.input_rules_name), indent(2, var.input_rules))))}"
+  input_rules_name  = "${split(",", upper(join(",", var.input_rules_name)))}"
+  input_rules       = "${indent(6, join("\n", formatlist("- LS_RULE_INPUT_%s: |\n%s", local.input_rules_name, indent(2, var.input_rules))))}"
 }
 
 
