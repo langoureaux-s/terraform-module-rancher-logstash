@@ -1,4 +1,5 @@
 version: '2'
+${volume_section}
 services:
   logstash:
     tty: true

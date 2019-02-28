@@ -30,6 +30,7 @@ locals {
   filebeat_key            = "${var.filebeat_key != "" ? "LS_CERT_FILEBEATKEY_NAME: filebeat.key ${indent(6, "\nLS_CERT_FILEBEATKEY_CONTEND")}: | ${indent(8, "\n${var.filebeat_key}")}" : "" }"
   ports                   = "${length(var.ports) > 0 ? "ports: ${indent(6, "\n${join("\n", formatlist("- %s", var.ports))}")}" : ""}"
   scale                   = "${var.scale != "" ? "scale: ${var.scale}" : ""}"
+  volume_section          = "${var.docker_volume == "true" ? "volumes:\n  ${var.data_path}:\n    driver: ${var.volume_driver}\n    per_container: true" : ""}"
 }
 
 
@@ -60,6 +61,7 @@ data "template_file" "docker_compose_logstash" {
     queue_type                = "${var.queue_type}"
     queue_max_bytes           = "${var.queue_max_bytes}"
     commit_id                 = "${var.commit_id}"
+    volume_section            = "${var.volume_section}"
   }
 }
 data "template_file" "rancher_compose_logstash" {
@@ -114,6 +116,7 @@ data "template_file" "docker_compose_logstash_driver" {
     commit_id                 = "${var.commit_id}"
     logstash_driver_image     = "${var.logstash_driver_image}"
     logstash_driver_version   = "${var.logstash_driver_version}"
+    volume_section            = "${var.volume_section}"
   }
 }
 data "template_file" "rancher_compose_logstash_driver" {
