@@ -61,7 +61,7 @@ data "template_file" "docker_compose_logstash" {
     queue_type                = "${var.queue_type}"
     queue_max_bytes           = "${var.queue_max_bytes}"
     commit_id                 = "${var.commit_id}"
-    volume_section            = "${var.volume_section}"
+    volume_section            = "${local.volume_section}"
   }
 }
 data "template_file" "rancher_compose_logstash" {
@@ -116,7 +116,7 @@ data "template_file" "docker_compose_logstash_driver" {
     commit_id                 = "${var.commit_id}"
     logstash_driver_image     = "${var.logstash_driver_image}"
     logstash_driver_version   = "${var.logstash_driver_version}"
-    volume_section            = "${var.volume_section}"
+    volume_section            = "${local.volume_section}"
   }
 }
 data "template_file" "rancher_compose_logstash_driver" {
