@@ -30,7 +30,7 @@ locals {
   filebeat_key            = "${var.filebeat_key != "" ? "LS_CERT_FILEBEATKEY_NAME: filebeat.key ${indent(6, "\nLS_CERT_FILEBEATKEY_CONTEND")}: | ${indent(8, "\n${var.filebeat_key}")}" : "" }"
   ports                   = "${length(var.ports) > 0 ? "ports: ${indent(6, "\n${join("\n", formatlist("- %s", var.ports))}")}" : ""}"
   scale                   = "${var.scale != "" ? "scale: ${var.scale}" : ""}"
-  volume_section          = "${var.docker_volume == "true" ? "volumes:\n  ${var.data_path}:\n    driver: ${var.storage_driver}\n    per_container: true" : ""}"
+  volume_section          = "${var.docker_volume == "true" ? "volumes:\n  ${var.data_path}:\n    driver: ${var.storage_driver}\n    external: true" : ""}"
 }
 
 
