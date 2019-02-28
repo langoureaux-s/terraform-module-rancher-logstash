@@ -16,8 +16,7 @@ services:
       LS_MONITORING_ELASTICSEARCH_USERNAME: logstash_system
       LS_MONITORING_ELASTICSEARCH_PASSWORD: ${logstash_system_password}
       ${input_rules}
-      LS_RULE_OUTPUT_GLOBAL: |
-        ${output_rules}
+      ${output_rules}
       ${filter_rules}
       ${filebeat_crt}
       ${filebeat_key}
