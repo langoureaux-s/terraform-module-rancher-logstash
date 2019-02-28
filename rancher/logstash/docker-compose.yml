@@ -15,8 +15,7 @@ services:
       LS_MONITORING_ELASTICSEARCH_URL: http://elasticsearch-client:9200
       LS_MONITORING_ELASTICSEARCH_USERNAME: logstash_system
       LS_MONITORING_ELASTICSEARCH_PASSWORD: ${logstash_system_password}
-      LS_RULE_INPUT_GLOBAL: |
-        ${input_rules}
+      ${input_rules}
       LS_RULE_OUTPUT_GLOBAL: |
         ${output_rules}
       LS_RULE_FILTER_GLOBAL: |
