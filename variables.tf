@@ -55,13 +55,25 @@ variable "input_rules" {
   type = "list"
   default = []
 }
+variable "output_rules_name" {
+  description = "The output rules name for Logstash"
+  type = "list"
+  default = []
+}
 variable "output_rules" {
   description = "The output rules for Logstash"
-  default = ""
+  type = "list"
+  default = []
+}
+variable "filter_rules_name" {
+  description = "The filter rules name for Logstash"
+  type = "list"
+  default = []
 }
 variable "filter_rules" {
   description = "The filter rules for Logstash"
-  default = ""
+  type = "list"
+  default = []
 }
 variable "external_links" {
   description = "List for external links"

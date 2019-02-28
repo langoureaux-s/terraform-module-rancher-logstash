@@ -18,8 +18,7 @@ services:
       ${input_rules}
       LS_RULE_OUTPUT_GLOBAL: |
         ${output_rules}
-      LS_RULE_FILTER_GLOBAL: |
-        ${filter_rules}
+      ${filter_rules}
       ${filebeat_crt}
       ${filebeat_key}
       COMMIT_ID: ${commit_id}
