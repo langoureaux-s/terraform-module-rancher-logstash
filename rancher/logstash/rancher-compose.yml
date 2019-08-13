@@ -10,6 +10,6 @@ services:
       healthy_threshold: 3
       response_timeout: 5000
       strategy: recreate
-      initializing_timeout: 120000
-      reinitializing_timeout: 120000
+      initializing_timeout: 180000
+      reinitializing_timeout: 180000
       request_line: GET / HTTP/1.1
