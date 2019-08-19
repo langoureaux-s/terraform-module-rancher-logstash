@@ -12,4 +12,4 @@ services:
       strategy: recreate
       initializing_timeout: 180000
       reinitializing_timeout: 180000
-      request_line: GET / HTTP/1.1
+      request_line: GET / HTTP/1.0
