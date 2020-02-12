@@ -27,7 +27,7 @@ variable "commit_id" {
 
 variable "image_version" {
   description = "The image version of Logstash to use"
-  default = "7.5.1-1"
+  default = "7.5.1-2"
 }
 variable "image_name" {
   description = "The image name to use"
